@@ -32,8 +32,8 @@ const PERSONAL_INFO = {
   location: "Mazarrón / Región de Murcia, España",
   email: "pablojimenezjo2005@gmail.com",
   github: "https://github.com/Pabloelique",
-  linkedin: "https://www.linkedin.com/in/pablo-jimenez-jorquera-38b219309/",
-  cvPath: "/cv/Pablo-Jimenez-CV-DAM-2026.pdf",
+  linkedin: "https://www.linkedin.com/in/pablo-jim%C3%A9nez-jorquera-38b219309/",
+  cvPath: "/cv/Pablo-Jimenez-CV-DAM-2026.pdf?v=linkedin-correcto",
   profileImg: "/pablo-profesional.png",
   drivingLicense: "Carnet B y vehículo propio",
   languages: "Español (nativo), Inglés (B2, sin certificación), Francés (básico)",
@@ -365,6 +365,8 @@ export default function App() {
             </a>
 
             <button
+              aria-label={mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+              aria-expanded={mobileMenuOpen}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-2 text-slate-400 hover:text-slate-100"
             >
@@ -823,7 +825,7 @@ export default function App() {
                 <h3 className="text-2xl font-bold">{activeProject.name}</h3>
                 <p className="text-xs text-blue-400 mt-2">{activeProject.status}</p>
               </div>
-              <button onClick={() => setActiveProject(null)} className="p-2 rounded-lg hover:bg-slate-800 text-slate-400">
+              <button aria-label="Cerrar proyecto" onClick={() => setActiveProject(null)} className="p-2 rounded-lg hover:bg-slate-800 text-slate-400">
                 <X size={20} />
               </button>
             </div>
@@ -898,7 +900,7 @@ export default function App() {
             </div>
 
             <div className="pt-4 border-t border-slate-800 flex justify-end">
-              <button onClick={() => setActiveProject(null)} className="px-6 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs">
+              <button aria-label="Cerrar proyecto" onClick={() => setActiveProject(null)} className="px-6 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs">
                 Cerrar Detalle
               </button>
             </div>
@@ -912,7 +914,7 @@ export default function App() {
           <div className={`max-w-lg w-full p-6 sm:p-8 rounded-3xl border ${darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200'} shadow-2xl space-y-4`}>
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
               <h3 className="text-lg font-bold">{activeSkillCategory.title}</h3>
-              <button onClick={() => setActiveSkillCategory(null)} className="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400">
+              <button aria-label="Cerrar aptitud" onClick={() => setActiveSkillCategory(null)} className="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400">
                 <X size={18} />
               </button>
             </div>
@@ -931,7 +933,7 @@ export default function App() {
             </div>
 
             <div className="pt-4 flex justify-end">
-              <button onClick={() => setActiveSkillCategory(null)} className="px-5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium text-xs">
+              <button aria-label="Cerrar aptitud" onClick={() => setActiveSkillCategory(null)} className="px-5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium text-xs">
                 Aceptar
               </button>
             </div>
