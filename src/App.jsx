@@ -33,7 +33,7 @@ const PERSONAL_INFO = {
   github: "https://github.com/Pabloelique",
   linkedin: "https://www.linkedin.com/in/pablo-jimenez-jorquera-38b219309/",
   cvPath: "/cv/Pablo-Jimenez-CV.pdf",
-  profileImg: "/pablo.jpg",
+  profileImg: "/pablo-profesional.png",
   drivingLicense: "Carnet B y vehículo propio",
   languages: "Español (nativo), Inglés (B2, sin certificación), Francés (básico)",
   bioHero: "Soy estudiante de DAM con interés en el desarrollo de software, aplicaciones de escritorio, bases de datos, desarrollo web y sistemas. Me gusta transformar ideas en soluciones funcionales, comprender cómo funcionan las tecnologías y mejorar mis proyectos mediante la práctica.",
