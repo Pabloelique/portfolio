@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  FolderGit2, Mail, Download, ExternalLink, Moon, Sun, Menu, X, 
-  Code, Database, Globe, Server, Cpu, Layers, CheckCircle2, Award, 
+import {
+  FolderGit2, Mail, Download, ExternalLink, Moon, Sun, Menu, X,
+  Code, Database, Globe, Server, Cpu, Layers, CheckCircle2, Award,
   Terminal, ShieldCheck, ChevronRight, ArrowLeft, ArrowUpRight, Share2
 } from 'lucide-react';
 
@@ -21,10 +21,12 @@ const Linkedin = ({ size = 18 }) => (
   </svg>
 );
 
+const publicAsset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
+
 // DATOS PERSONALES
 const PERSONAL_INFO = {
   name: "Pablo Jiménez Jorquera",
-  title: "Estudiante de Desarrollo de Aplicaciones Multiplataforma (DAM)",
+  title: "Estudiante de 2.º de Desarrollo de Aplicaciones Multiplataforma (DAM)",
   subtitle: "Desarrollo aplicaciones, diseño soluciones web y aprendo construyendo proyectos reales.",
   location: "Mazarrón / Región de Murcia, España",
   email: "pablojimenezjo2005@gmail.com",
@@ -33,17 +35,93 @@ const PERSONAL_INFO = {
   cvPath: "/cv/Pablo-Jimenez-CV.pdf",
   profileImg: "/pablo.jpg",
   drivingLicense: "Carnet B y vehículo propio",
-  languages: "Español (nativo), Inglés (B2 / Intermedio-Avanzado), Francés (básico)",
+  languages: "Español (nativo), Inglés (B2, sin certificación), Francés (básico)",
   bioHero: "Soy estudiante de DAM con interés en el desarrollo de software, aplicaciones de escritorio, bases de datos, desarrollo web y sistemas. Me gusta transformar ideas en soluciones funcionales, comprender cómo funcionan las tecnologías y mejorar mis proyectos mediante la práctica.",
   bioAbout: `Soy Pablo Jiménez Jorquera, estudiante de Desarrollo de Aplicaciones Multiplataforma. En mi formación académica y proyectos personales he trabajado con Java, JavaFX, bases de datos relacionales y no relacionales, interfaces gráficas, desarrollo web, XML, Git, Linux, redes y máquinas virtuales.
 
 Mi metodología se basa en la práctica. Me gusta analizar un problema, organizar una solución, diseñar su estructura y convertirla en una aplicación funcional. Tengo experiencia realizando proyectos web con WordPress, hosting y dominios, así como en diagnóstico de software, ordenadores y redes.
 
-Actualmente busco una oportunidad de prácticas FCT / Formación en Empresa para aplicar mis conocimientos, aportar valor a un equipo de desarrollo y seguir aprendiendo de profesionales.`
+Actualmente participo en VoltaERP, el proyecto intermodular de segundo de DAM, trabajando en frontend, backend y base de datos con Angular, Node.js, Express, Sequelize y PostgreSQL.
+
+Busco una oportunidad de prácticas FCT / Formación en Empresa para aplicar mis conocimientos, aportar valor a un equipo de desarrollo y seguir aprendiendo de profesionales.`
 };
 
 // PROYECTOS REALES
 const PROJECTS = [
+{
+  "id": "voltaerp",
+  "slug": "voltaerp",
+  "name": "VoltaERP",
+  "isFeatured": false,
+  "type": "Proyecto intermodular de 2.º de DAM",
+  "status": "En desarrollo",
+  "shortDescription": "ERP web para una pequeña empresa, desarrollado en un equipo de cinco personas. Participo en frontend, backend y base de datos. El alcance incluye clientes, proveedores, inventario, ventas, compras e informes.",
+  "technologies": [
+    "Angular",
+    "TypeScript",
+    "JavaScript",
+    "Node.js",
+    "Express",
+    "PostgreSQL",
+    "Sequelize",
+    "Git",
+    "Jira"
+  ],
+  "challenge": "Centralizar la gestión de una pequeña empresa en una aplicación con acceso por roles y datos relacionados.",
+  "solution": "Proyecto en desarrollo con frontend Angular, API REST en Node.js y Express y persistencia en PostgreSQL mediante Sequelize. Organización del equipo con Jira y sprints.",
+  "contribution": "Participo en todas las partes del proyecto. He completado la gestión de usuarios y las acciones para cambiar roles y activar o desactivar cuentas.",
+  "completed": [
+    "Gestión de usuarios: alta, consulta y edición.",
+    "Cambio de rol y activación o desactivación de usuarios."
+  ],
+  "planned": [
+    "Clientes y proveedores.",
+    "Catálogo e inventario.",
+    "Facturación de ventas y compras.",
+    "Informes y dashboard."
+  ]
+},
+{
+  "id": "profesor-python-java",
+  "slug": "profesor-python-java",
+  "name": "El Profesor Python · Escritorio",
+  "isFeatured": false,
+  "type": "Aventura gráfica · Proyecto de 1.º de DAM",
+  "status": "Versión académica completada",
+  "shortDescription": "Aventura gráfica detectivesca desarrollada en equipo con Java. Incluye escenas, decisiones y acertijos mediante una interfaz Swing/AWT y recursos de audio.",
+  "technologies": [
+    "Java 21",
+    "Swing",
+    "AWT",
+    "Maven",
+    "Git"
+  ],
+  "repoUrl": "https://github.com/Ayoxb1/Aventura-Grafica-Profesor-Python",
+  "challenge": "Convertir una historia de misterio en una aventura interactiva con ventanas, acertijos y sonido.",
+  "solution": "Aplicación de escritorio con escenas y ventanas modulares, eventos de usuario y reproducción de audio.",
+  "contribution": "Proyecto desarrollado junto a Ayoub Atidi Belbaz."
+},
+{
+  "id": "profesor-python-web",
+  "slug": "profesor-python-web",
+  "name": "El Profesor Python · Online",
+  "isFeatured": false,
+  "type": "Adaptación web de la aventura gráfica",
+  "status": "Publicado · Demo disponible",
+  "shortDescription": "Versión web de El Profesor Python, con escenas interactivas, cuaderno de pistas, acertijo del río y gestión de música y efectos de sonido.",
+  "technologies": [
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "HTML5 Audio"
+  ],
+  "repoUrl": "https://github.com/Ayoxb1/Profesor-Python-Online",
+  "demoUrl": "https://profesor-python.vercel.app",
+  "challenge": "Adaptar la aventura de escritorio para poder jugar desde el navegador.",
+  "solution": "Interfaz por componentes con estado del juego, nodos narrativos, diario de pistas y un gestor de audio compartido.",
+  "contribution": "Proyecto en equipo con Ayoub Atidi Belbaz, a partir de la aventura original en Java."
+},
   {
     id: "garash-studio-jf",
     slug: "garash-studio-jf",
@@ -201,7 +279,7 @@ export default function App() {
 
   return (
     <div className={`min-h-screen ${darkMode ? 'bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-900'} transition-colors duration-300 font-sans`}>
-      
+
       {/* NAVEGACIÓN SUPERIOR */}
       <header className={`sticky top-0 z-40 backdrop-blur-md border-b ${darkMode ? 'bg-slate-950/80 border-slate-800' : 'bg-white/80 border-slate-200'} transition-colors`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -231,7 +309,7 @@ export default function App() {
             </button>
 
             <a
-              href={PERSONAL_INFO.cvPath}
+              href={publicAsset(PERSONAL_INFO.cvPath)}
               download
               className="hidden sm:inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-md hover:shadow-blue-500/20"
             >
@@ -257,7 +335,7 @@ export default function App() {
             <a href="#experiencia" onClick={() => setMobileMenuOpen(false)} className="block text-sm font-medium">Experiencia</a>
             <a href="#formacion" onClick={() => setMobileMenuOpen(false)} className="block text-sm font-medium">Formación</a>
             <a href="#contacto" onClick={() => setMobileMenuOpen(false)} className="block text-sm font-medium">Contacto</a>
-            <a href={PERSONAL_INFO.cvPath} download className="flex items-center gap-2 text-sm font-semibold text-blue-500 pt-2">
+            <a href={publicAsset(PERSONAL_INFO.cvPath)} download className="flex items-center gap-2 text-sm font-semibold text-blue-500 pt-2">
               <Download size={16} /> Descargar Currículum
             </a>
           </div>
@@ -289,7 +367,7 @@ export default function App() {
                 <a href="#proyectos" className="px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-all shadow-lg shadow-blue-600/25 flex items-center gap-2">
                   Ver Proyectos <ChevronRight size={16} />
                 </a>
-                <a href={PERSONAL_INFO.cvPath} download className={`px-6 py-3 rounded-lg border ${darkMode ? 'border-slate-800 bg-slate-900 hover:bg-slate-800' : 'border-slate-300 bg-white hover:bg-slate-100'} font-medium transition-all flex items-center gap-2`}>
+                <a href={publicAsset(PERSONAL_INFO.cvPath)} download className={`px-6 py-3 rounded-lg border ${darkMode ? 'border-slate-800 bg-slate-900 hover:bg-slate-800' : 'border-slate-300 bg-white hover:bg-slate-100'} font-medium transition-all flex items-center gap-2`}>
                   <Download size={16} /> Descargar CV
                 </a>
                 <a href="#contacto" className={`px-6 py-3 rounded-lg border ${darkMode ? 'border-slate-800 bg-slate-900 hover:bg-slate-800' : 'border-slate-300 bg-white hover:bg-slate-100'} font-medium transition-all`}>
@@ -312,9 +390,9 @@ export default function App() {
 
             <div className="md:col-span-4 flex justify-center">
               <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-2xl overflow-hidden border-2 border-blue-500/30 shadow-2xl bg-gradient-to-tr from-blue-900/40 to-slate-900">
-                <img 
-                  src={PERSONAL_INFO.profileImg} 
-                  alt="Pablo Jiménez Jorquera" 
+                <img
+                  src={publicAsset(PERSONAL_INFO.profileImg)}
+                  alt="Pablo Jiménez Jorquera"
                   className="w-full h-full object-cover object-center"
                   onError={(e) => { e.target.src = "https://raw.githubusercontent.com/Pabloelique/JFGARASHSTUDIO/main/capturas/pablo.jpg"; }}
                 />
@@ -383,7 +461,7 @@ export default function App() {
             {SKILL_CATEGORIES.map((cat, idx) => {
               const IconComp = cat.icon;
               return (
-                <div 
+                <div
                   key={idx}
                   onClick={() => setActiveSkillCategory(cat)}
                   className={`p-6 rounded-2xl border ${darkMode ? 'bg-slate-900/60 border-slate-800 hover:border-blue-500/50' : 'bg-white border-slate-200 hover:border-blue-500'} cursor-pointer transition-all hover:-translate-y-1 group`}
@@ -438,6 +516,7 @@ export default function App() {
               <div className="grid lg:grid-cols-12 gap-8 items-center">
                 <div className="lg:col-span-7 space-y-4">
                   <h3 className="text-2xl sm:text-3xl font-bold">{mainProj.name}</h3>
+                  <p className="text-xs font-semibold text-blue-500">{mainProj.status}</p>
                   <p className="text-xs font-semibold text-blue-500 uppercase tracking-wider">{mainProj.type} • {mainProj.location}</p>
                   <p className={`text-sm sm:text-base ${darkMode ? 'text-slate-300' : 'text-slate-600'} leading-relaxed`}>
                     {mainProj.shortDescription}
@@ -469,7 +548,7 @@ export default function App() {
                 <div className="lg:col-span-5 grid grid-cols-2 gap-3">
                   {mainProj.images && mainProj.images.slice(0, 4).map((img, idx) => (
                     <div key={idx} className="rounded-xl overflow-hidden border border-slate-800 bg-slate-950 aspect-video group relative">
-                      <img src={img.url} alt={img.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                      <img src={publicAsset(img.url)} alt={img.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                       <div className="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-2 text-center text-[10px] text-white font-medium">
                         {img.title}
                       </div>
@@ -487,6 +566,7 @@ export default function App() {
                 <div>
                   <span className="text-[11px] font-semibold text-blue-500 uppercase tracking-wider">{proj.type}</span>
                   <h3 className="text-xl font-bold mt-1 mb-2">{proj.name}</h3>
+                  <p className="text-xs font-semibold text-blue-500 mb-3">{proj.status}</p>
                   <p className={`text-xs ${darkMode ? 'text-slate-400' : 'text-slate-600'} leading-relaxed mb-4`}>
                     {proj.shortDescription}
                   </p>
@@ -687,6 +767,7 @@ export default function App() {
               <div>
                 <span className="text-xs font-semibold text-blue-500">{activeProject.type}</span>
                 <h3 className="text-2xl font-bold">{activeProject.name}</h3>
+                <p className="text-xs text-blue-400 mt-2">{activeProject.status}</p>
               </div>
               <button onClick={() => setActiveProject(null)} className="p-2 rounded-lg hover:bg-slate-800 text-slate-400">
                 <X size={20} />
@@ -704,6 +785,21 @@ export default function App() {
                 <p className="text-slate-300">{activeProject.solution}</p>
               </div>
 
+              {activeProject.contribution && (
+                <div><h4 className="font-bold text-sm text-blue-400 mb-1">Mi participación</h4><p className="text-slate-300">{activeProject.contribution}</p></div>
+              )}
+              {activeProject.completed && (
+                <div><h4 className="font-bold text-sm text-blue-400 mb-1">Trabajo completado</h4><ul className="list-disc pl-5 text-slate-300 space-y-1">{activeProject.completed.map(item => <li key={item}>{item}</li>)}</ul></div>
+              )}
+              {activeProject.planned && (
+                <div><h4 className="font-bold text-sm text-blue-400 mb-1">Alcance previsto</h4><ul className="list-disc pl-5 text-slate-300 space-y-1">{activeProject.planned.map(item => <li key={item}>{item}</li>)}</ul></div>
+              )}
+              {(activeProject.repoUrl || activeProject.demoUrl) && (
+                <div className="flex flex-wrap gap-4">
+                  {activeProject.repoUrl && <a href={activeProject.repoUrl} target="_blank" rel="noreferrer" className="text-blue-400 underline">Ver código en GitHub</a>}
+                  {activeProject.demoUrl && <a href={activeProject.demoUrl} target="_blank" rel="noreferrer" className="text-blue-400 underline">Abrir demo</a>}
+                </div>
+              )}
               {activeProject.roles && (
                 <div>
                   <h4 className="font-bold text-sm text-blue-400 mb-2">Roles de Usuario</h4>
@@ -738,7 +834,7 @@ export default function App() {
                   <div className="grid sm:grid-cols-2 gap-3">
                     {activeProject.images.map((img, i) => (
                       <div key={i} className="rounded-lg overflow-hidden border border-slate-800 bg-slate-950">
-                        <img src={img.url} alt={img.title} className="w-full h-auto object-cover" />
+                        <img src={publicAsset(img.url)} alt={img.title} className="w-full h-auto object-cover" />
                         <p className="p-2 text-[10px] text-center text-slate-400">{img.title}</p>
                       </div>
                     ))}
