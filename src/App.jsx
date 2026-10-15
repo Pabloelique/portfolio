@@ -337,7 +337,7 @@ export default function App() {
           </a>
 
           {/* Menú Desktop */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
+          <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
             <a href="#inicio" className="hover:text-blue-500 transition-colors">Inicio</a>
             <a href="#sobre-mi" className="hover:text-blue-500 transition-colors">Sobre mí</a>
             <a href="#habilidades" className="hover:text-blue-500 transition-colors">Habilidades</a>
@@ -368,7 +368,7 @@ export default function App() {
               aria-label={mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
               aria-expanded={mobileMenuOpen}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-slate-400 hover:text-slate-100"
+              className="lg:hidden p-2 text-slate-400 hover:text-slate-100"
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -377,7 +377,7 @@ export default function App() {
 
         {/* Menú Móvil */}
         {mobileMenuOpen && (
-          <div className={`md:hidden border-b ${darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200'} px-4 py-6 space-y-4`}>
+          <div className={`lg:hidden border-b ${darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200'} px-4 py-6 space-y-4`}>
             <a href="#inicio" onClick={() => setMobileMenuOpen(false)} className="block text-sm font-medium">Inicio</a>
             <a href="#sobre-mi" onClick={() => setMobileMenuOpen(false)} className="block text-sm font-medium">Sobre mí</a>
             <a href="#habilidades" onClick={() => setMobileMenuOpen(false)} className="block text-sm font-medium">Habilidades</a>
@@ -900,7 +900,7 @@ export default function App() {
             </div>
 
             <div className="pt-4 border-t border-slate-800 flex justify-end">
-              <button aria-label="Cerrar proyecto" onClick={() => setActiveProject(null)} className="px-6 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs">
+              <button onClick={() => setActiveProject(null)} className="px-6 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs">
                 Cerrar Detalle
               </button>
             </div>
