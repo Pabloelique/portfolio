@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { submitContact } from './contact';
 import {
   FolderGit2, Mail, Download, ExternalLink, Moon, Sun, Menu, X,
   Code, Database, Globe, Server, Cpu, Layers, CheckCircle2, Award,
@@ -278,7 +279,9 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeProject, setActiveProject] = useState(null);
   const [activeSkillCategory, setActiveSkillCategory] = useState(null);
-  const [contactSubmitted, setContactSubmitted] = useState(false);
+  const [contactStatus, setContactStatus] = useState('idle');
+  const [contactError, setContactError] = useState('');
+  const submittingContact = useRef(false);
 
   useEffect(() => {
     if (darkMode) {
@@ -288,10 +291,38 @@ export default function App() {
     }
   }, [darkMode]);
 
-  const handleContactSubmit = (e) => {
+  const handleContactSubmit = async (e) => {
     e.preventDefault();
-    setContactSubmitted(true);
-    setTimeout(() => setContactSubmitted(false), 5000);
+    if (submittingContact.current) return;
+    const form = e.currentTarget;
+    const values = Object.fromEntries(new FormData(form));
+    if (values._honey) return;
+    const fields = {
+      name: values.name.trim(),
+      company: values.company.trim(),
+      email: values.email.trim(),
+      message: values.message.trim(),
+    };
+    if (!fields.name || !fields.message) {
+      setContactStatus('error');
+      setContactError('Escribe tu nombre y un mensaje. No pueden contener solo espacios.');
+      return;
+    }
+    submittingContact.current = true;
+    setContactError('');
+    setContactStatus('sending');
+    try {
+      await submitContact(fields);
+      form.reset();
+      setContactStatus('success');
+    } catch (error) {
+      setContactStatus('error');
+      setContactError(error instanceof TypeError
+        ? 'No se ha podido conectar. Revisa tu conexión o escríbeme directamente por correo.'
+        : error.message);
+    } finally {
+      submittingContact.current = false;
+    }
   };
 
   return (
@@ -731,38 +762,44 @@ export default function App() {
               </div>
 
               <div className="md:col-span-7">
-                {contactSubmitted ? (
-                  <div className="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-center space-y-2">
+                {contactStatus === 'success' ? (
+                  <div role="status" className="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-center space-y-2">
                     <CheckCircle2 size={32} className="mx-auto" />
                     <p className="font-bold">¡Mensaje enviado correctamente!</p>
-                    <p className="text-xs">Me pondré en contacto contigo a la mayor brevedad posible.</p>
+                    <p className="text-xs">Gracias por escribirme. Te responderé en el correo que has indicado.</p>
+                    <button type="button" onClick={() => setContactStatus('idle')} className="mt-3 text-sm underline">Enviar otro mensaje</button>
                   </div>
                 ) : (
-                  <form onSubmit={handleContactSubmit} className="space-y-4">
+                  <form onSubmit={handleContactSubmit} aria-busy={contactStatus === 'sending'} className="space-y-4">
+                    <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+                    <fieldset disabled={contactStatus === 'sending'} className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs font-medium mb-1">Nombre</label>
-                        <input type="text" required className={`w-full px-4 py-2.5 rounded-lg text-xs border ${darkMode ? 'bg-slate-950 border-slate-800' : 'bg-slate-50 border-slate-300'} focus:outline-none focus:border-blue-500`} placeholder="Tu nombre" />
+                        <label htmlFor="contact-name" className="block text-xs font-medium mb-1">Nombre</label>
+                        <input id="contact-name" name="name" autoComplete="name" maxLength={100} type="text" required className={`w-full px-4 py-2.5 rounded-lg text-xs border ${darkMode ? 'bg-slate-950 border-slate-800' : 'bg-slate-50 border-slate-300'} focus:outline-none focus:border-blue-500`} placeholder="Tu nombre" />
                       </div>
                       <div>
-                        <label className="block text-xs font-medium mb-1">Empresa</label>
-                        <input type="text" className={`w-full px-4 py-2.5 rounded-lg text-xs border ${darkMode ? 'bg-slate-950 border-slate-800' : 'bg-slate-50 border-slate-300'} focus:outline-none focus:border-blue-500`} placeholder="Nombre de la empresa" />
+                        <label htmlFor="contact-company" className="block text-xs font-medium mb-1">Empresa</label>
+                        <input id="contact-company" name="company" autoComplete="organization" maxLength={150} type="text" className={`w-full px-4 py-2.5 rounded-lg text-xs border ${darkMode ? 'bg-slate-950 border-slate-800' : 'bg-slate-50 border-slate-300'} focus:outline-none focus:border-blue-500`} placeholder="Nombre de la empresa" />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-xs font-medium mb-1">Correo electrónico</label>
-                      <input type="email" required className={`w-full px-4 py-2.5 rounded-lg text-xs border ${darkMode ? 'bg-slate-950 border-slate-800' : 'bg-slate-50 border-slate-300'} focus:outline-none focus:border-blue-500`} placeholder="tu@email.com" />
+                      <label htmlFor="contact-email" className="block text-xs font-medium mb-1">Correo electrónico</label>
+                      <input id="contact-email" name="email" autoComplete="email" maxLength={254} type="email" required className={`w-full px-4 py-2.5 rounded-lg text-xs border ${darkMode ? 'bg-slate-950 border-slate-800' : 'bg-slate-50 border-slate-300'} focus:outline-none focus:border-blue-500`} placeholder="tu@email.com" />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-medium mb-1">Mensaje</label>
-                      <textarea rows={4} required className={`w-full px-4 py-2.5 rounded-lg text-xs border ${darkMode ? 'bg-slate-950 border-slate-800' : 'bg-slate-50 border-slate-300'} focus:outline-none focus:border-blue-500`} placeholder="¿En qué puedo ayudarte?"></textarea>
+                      <label htmlFor="contact-message" className="block text-xs font-medium mb-1">Mensaje</label>
+                      <textarea id="contact-message" name="message" maxLength={5000} rows={4} required className={`w-full px-4 py-2.5 rounded-lg text-xs border ${darkMode ? 'bg-slate-950 border-slate-800' : 'bg-slate-50 border-slate-300'} focus:outline-none focus:border-blue-500`} placeholder="¿En qué puedo ayudarte?"></textarea>
                     </div>
 
                     <button type="submit" className="w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs transition-all shadow-lg shadow-blue-600/20">
-                      Enviar Mensaje
+                      {contactStatus === 'sending' ? 'Enviando…' : 'Enviar mensaje'}
                     </button>
+                    </fieldset>
+                    {contactStatus === 'error' && <p role="alert" className="text-sm text-red-500">{contactError}</p>}
+                    <p className="text-xs text-slate-500">También puedes escribirme a <a className="underline" href={`mailto:${PERSONAL_INFO.email}`}>{PERSONAL_INFO.email}</a>.</p>
                   </form>
                 )}
               </div>
