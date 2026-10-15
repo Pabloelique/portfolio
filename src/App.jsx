@@ -32,14 +32,14 @@ const PERSONAL_INFO = {
   email: "pablojimenezjo2005@gmail.com",
   github: "https://github.com/Pabloelique",
   linkedin: "https://www.linkedin.com/in/pablo-jimenez-jorquera-38b219309/",
-  cvPath: "/cv/Pablo-Jimenez-CV.pdf",
+  cvPath: "/cv/Pablo-Jimenez-CV-DAM-2026.pdf",
   profileImg: "/pablo-profesional.png",
   drivingLicense: "Carnet B y vehículo propio",
   languages: "Español (nativo), Inglés (B2, sin certificación), Francés (básico)",
   bioHero: "Soy estudiante de DAM con interés en el desarrollo de software, aplicaciones de escritorio, bases de datos, desarrollo web y sistemas. Me gusta transformar ideas en soluciones funcionales, comprender cómo funcionan las tecnologías y mejorar mis proyectos mediante la práctica.",
   bioAbout: `Soy Pablo Jiménez Jorquera, estudiante de Desarrollo de Aplicaciones Multiplataforma. En mi formación académica y proyectos personales he trabajado con Java, JavaFX, bases de datos relacionales y no relacionales, interfaces gráficas, desarrollo web, XML, Git, Linux, redes y máquinas virtuales.
 
-Mi metodología se basa en la práctica. Me gusta analizar un problema, organizar una solución, diseñar su estructura y convertirla en una aplicación funcional. Tengo experiencia realizando proyectos web con WordPress, hosting y dominios, así como en diagnóstico de software, ordenadores y redes.
+Mi metodología se basa en la práctica. Me gusta analizar un problema, organizar una solución, diseñar su estructura y convertirla en una aplicación funcional. He creado la web clinicamiguelmarin.com con WordPress y alojamiento en Hostinger. También tengo experiencia en diagnóstico de software, ordenadores y redes.
 
 Actualmente participo en VoltaERP, el proyecto intermodular de segundo de DAM, trabajando en frontend, backend y base de datos con Angular, Node.js, Express, Sequelize y PostgreSQL.
 
@@ -48,6 +48,23 @@ Busco una oportunidad de prácticas FCT / Formación en Empresa para aplicar mis
 
 // PROYECTOS REALES
 const PROJECTS = [
+{
+  "id": "clinica-miguel-marin",
+  "slug": "clinica-miguel-marin",
+  "name": "Clínica Miguel Marín",
+  "isFeatured": false,
+  "type": "Web de clínica · Proyecto real",
+  "status": "Web publicada",
+  "shortDescription": "Creación de la web de Clínica Miguel Marín con WordPress y alojamiento en Hostinger.",
+  "technologies": [
+    "WordPress",
+    "Hostinger"
+  ],
+  "demoUrl": "https://clinicamiguelmarin.com/",
+  "challenge": "Presentar la clínica y su información en una web accesible para sus visitantes.",
+  "solution": "Sitio web creado con WordPress y alojado en Hostinger.",
+  "contribution": "He creado la web de Clínica Miguel Marín con WordPress en Hostinger."
+},
 {
   "id": "voltaerp",
   "slug": "voltaerp",
